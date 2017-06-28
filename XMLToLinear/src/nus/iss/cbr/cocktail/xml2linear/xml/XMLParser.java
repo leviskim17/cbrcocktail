@@ -6,12 +6,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 
 public class XMLParser {
 	
 	public void parse(String filePath) {
-		 
 		try {
 			File xmlFile = new File(filePath);
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -20,29 +21,126 @@ public class XMLParser {
 			doc.getDocumentElement().normalize();
 			 
 			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-			NodeList nList = doc.getElementsByTagName("staff");
 			System.out.println("-----------------------");
-			 
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-				Node nNode = nList.item(temp);
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
-					 
-					System.out.println("First Name : " + getTagValue("firstname", eElement));
-					System.out.println("Last Name : " + getTagValue("lastname", eElement));
-					System.out.println("Nick Name : " + getTagValue("nickname", eElement));
-					System.out.println("Salary : " + getTagValue("salary", eElement)); 
+			
+			NodeList recipeLst = doc.getElementsByTagName("recipe");
+			for (int recipeIdx = 0; recipeIdx < recipeLst.getLength(); recipeIdx++) {
+				Node recipeNode = recipeLst.item(recipeIdx);
+				if (recipeNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element recipeElmt = (Element) recipeNode;
+					System.out.println("title : " + getElementValue("title", recipeElmt));
+					
+					NodeList ingrediantLst = recipeElmt.getElementsByTagName("ingredients").item(0).getChildNodes();
+					for (int ingrediantIdx = 0; ingrediantIdx < ingrediantLst.getLength(); ingrediantIdx++) {
+						Node ingrediantNode = ingrediantLst.item(ingrediantIdx);
+						if (ingrediantNode.getNodeType() == Node.ELEMENT_NODE) {
+							Element ingrediantElmt = (Element)ingrediantNode;
+							
+							System.out.println("	food : " + getAttributeValue("food", ingrediantElmt));
+							System.out.println("	unit : " + getAttributeValue("unit", ingrediantElmt));
+							System.out.println("	quantity : " + getAttributeValue("quantity", ingrediantElmt));
+							System.out.println("	ingredient : " + getElementValue(ingrediantElmt));
+						}
+					}
+					
+					NodeList stepLst = recipeElmt.getElementsByTagName("preparation").item(0).getChildNodes();
+					for (int stepIdx = 0; stepIdx < stepLst.getLength(); stepIdx++) {
+						Node stepNode = stepLst.item(stepIdx);
+						if (stepNode.getNodeType() == Node.ELEMENT_NODE) {
+							Element stepElmt = (Element)stepNode;
+							System.out.println("	step : " + getElementValue(stepElmt));
+						}
+					}
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-			 
-	private static String getTagValue(String sTag, Element eElement) {
-		NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
-		Node nValue = (Node) nlList.item(0);
+	
+	public void generate(String xmlFilePath, String txtFilePath) {
+		try {
+			File xmlFile = new File(xmlFilePath);
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document doc = db.parse(xmlFile);
+			doc.getDocumentElement().normalize();
+			
+			BufferedWriter out = new BufferedWriter(new FileWriter(txtFilePath));
+			String buffer = "";
+			
+			buffer += "#CocktailPlainTextCaseBase";
+			out.write(buffer); 
+			out.newLine();
+			
+			buffer += "#caseId;title,food,unit,quantity,step";
+			out.write(buffer); 
+			out.newLine();
+			out.newLine();
+
+			NodeList recipeLst = doc.getElementsByTagName("recipe");
+			for (int recipeIdx = 0; recipeIdx < recipeLst.getLength(); recipeIdx++) {
+				Node recipeNode = recipeLst.item(recipeIdx);
+				if (recipeNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element recipeElmt = (Element) recipeNode;
+					System.out.println("title : " + getElementValue("title", recipeElmt));
+					buffer = getElementValue("title", recipeElmt) + ";";
+					
+					NodeList ingrediantLst = recipeElmt.getElementsByTagName("ingredients").item(0).getChildNodes();
+					for (int ingrediantIdx = 0; ingrediantIdx < ingrediantLst.getLength(); ingrediantIdx++) {
+						Node ingrediantNode = ingrediantLst.item(ingrediantIdx);
+						if (ingrediantNode.getNodeType() == Node.ELEMENT_NODE) {
+							Element ingrediantElmt = (Element)ingrediantNode;
+							
+							buffer += getAttributeValue("food", ingrediantElmt) + ";";
+							buffer += getAttributeValue("unit", ingrediantElmt) + ";";
+							buffer += getAttributeValue("quantity", ingrediantElmt) + ";";
+							buffer += getElementValue(ingrediantElmt) + ";";
+							
+							System.out.println("	food : " + getAttributeValue("food", ingrediantElmt));
+							System.out.println("	unit : " + getAttributeValue("unit", ingrediantElmt));
+							System.out.println("	quantity : " + getAttributeValue("quantity", ingrediantElmt));
+							System.out.println("	ingredient : " + getElementValue(ingrediantElmt));
+						}
+					}
+					
+					NodeList stepLst = recipeElmt.getElementsByTagName("preparation").item(0).getChildNodes();
+					for (int stepIdx = 0; stepIdx < stepLst.getLength(); stepIdx++) {
+						Node stepNode = stepLst.item(stepIdx);
+						if (stepNode.getNodeType() == Node.ELEMENT_NODE) {
+							Element stepElmt = (Element)stepNode;
+							
+							buffer += getElementValue(stepElmt) + ";";
+							System.out.println("	step : " + getElementValue(stepElmt));
+						}
+					}
+				}
+				
+				out.write(buffer); 
+				out.newLine();
+			}
+			
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static String getElementValue(Element element) {
+		NodeList nodeList = element.getChildNodes();
+		Node node = (Node)nodeList.item(0);
 		
-		return nValue.getNodeValue();
+		return node.getNodeValue();
+	}
+			 
+	private static String getElementValue(String tag, Element element) {
+		NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
+		Node node = (Node)nodeList.item(0);
+		return node.getNodeValue();
+	}
+	
+	private static String getAttributeValue(String tag, Element element) {
+		String value = element.getAttribute(tag);	
+		return value;
 	}
 }

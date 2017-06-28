@@ -22,7 +22,8 @@ public class MainFrame extends JFrame implements ActionListener {
 	private JLabel txtLbl = new JLabel("TXT");
 	private JTextField xmlTxtFld = new JTextField(60);
 	private JTextField txtTxtFld = new JTextField(60);
-	private JFileChooser jfc = new JFileChooser();
+	private JFileChooser xmlJfc = new JFileChooser();
+	private JFileChooser txtJfc = new JFileChooser();
     
     public MainFrame(String title){
         super(title);
@@ -53,23 +54,27 @@ public class MainFrame extends JFrame implements ActionListener {
         xmlBtn.addActionListener(this);
         txtBtn.addActionListener(this);
         
-        jfc.setFileFilter(new FileNameExtensionFilter("xml", "xml"));
-        jfc.setMultiSelectionEnabled(false);
+        xmlJfc.setFileFilter(new FileNameExtensionFilter("xml", "xml"));
+        xmlJfc.setMultiSelectionEnabled(false);
+        
+        txtJfc.setFileFilter(new FileNameExtensionFilter("txt", "txt"));
+        txtJfc.setMultiSelectionEnabled(false);
     }
 
     public void actionPerformed(ActionEvent arg0) {
 
 		if(arg0.getSource() == xmlBtn) {
-	        if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-	        	xmlTxtFld.setText(jfc.getSelectedFile().toString());
-	        	
-	        	String xmlFile = xmlTxtFld.getText();
-	        	XMLParser xmlParser = new XMLParser();
-	        	xmlParser.parse(xmlFile);
+	        if(xmlJfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+	        	xmlTxtFld.setText(xmlJfc.getSelectedFile().toString());
 	        }
 		} else if(arg0.getSource() == txtBtn) {
-	        if(jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-	        	txtTxtFld.setText(jfc.getSelectedFile().toString() + "." + jfc.getFileFilter().getDescription());
+	        if(txtJfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+	        	txtTxtFld.setText(txtJfc.getSelectedFile().toString() + "." + txtJfc.getFileFilter().getDescription());
+	        	
+	        	String xmlFile = xmlTxtFld.getText();
+	        	String txtFile = txtTxtFld.getText();
+	        	XMLParser xmlParser = new XMLParser();
+	        	xmlParser.generate(xmlFile, txtFile);
 	        }
 		}
     }
