@@ -80,11 +80,13 @@ public class XMLParser {
 
 			NodeList recipeLst = doc.getElementsByTagName("recipe");
 			for (int recipeIdx = 0; recipeIdx < recipeLst.getLength(); recipeIdx++) {
+				buffer = "case" + (recipeIdx + 1) + ";";
+				
 				Node recipeNode = recipeLst.item(recipeIdx);
 				if (recipeNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element recipeElmt = (Element) recipeNode;
 					System.out.println("title : " + getElementValue("title", recipeElmt));
-					buffer = getElementValue("title", recipeElmt) + ";";
+					buffer += getElementValue("title", recipeElmt) + ";";
 					
 					NodeList ingrediantLst = recipeElmt.getElementsByTagName("ingredients").item(0).getChildNodes();
 					for (int ingrediantIdx = 0; ingrediantIdx < ingrediantLst.getLength(); ingrediantIdx++) {
