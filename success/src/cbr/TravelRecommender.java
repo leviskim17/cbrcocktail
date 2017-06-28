@@ -76,40 +76,61 @@ public class TravelRecommender implements StandardCBRApplication {
 	
 	public void configure() throws ExecutionException {
 		try {
-			//Emulate data base server
-			jcolibri.test.database.HSQLDBserver.init();
-			
-			// Create a data base connector
-			_connector = new DataBaseConnector();
-			// Init the ddbb connector with the config file
-			_connector.initFromXMLfile(jcolibri.util.FileIO
-					.findFile("config/databaseconfig.xml"));
-			// Create a Lineal case base for in-memory organization
-			_caseBase = new LinearCaseBase();
-			
-			// Obtain a reference to OntoBridge
-			OntoBridge ob = jcolibri.util.OntoBridgeSingleton.getOntoBridge();
-			// Configure it to work with the Pellet reasoner
-			ob.initWithPelletReasoner();
-			// Setup the main ontology
-			OntologyDocument mainOnto = new OntologyDocument("http://gaia.fdi.ucm.es/ontologies/travel-destinations.owl", 
-									 FileIO.findFile("src/representation/travel-destinations.owl").toExternalForm());
-			// There are not subontologies
-			ArrayList<OntologyDocument> subOntologies = new ArrayList<OntologyDocument>();
-			// Load the ontology
-			ob.loadOntology(mainOnto, subOntologies, false);
+		//Emulate data base server
+		jcolibri.test.database.HSQLDBserver.init();
+		System.out.println("^^^^^^^^^^^^^^^");
+		System.out.println("after hs init");
+		System.out.println("^^^^^^^^^^^^^^^");
 
-			// Create the dialogs
-			similarityDialog = new SimilarityDialog(main);
-			resultDialog     = new ResultDialog(main);
-			autoAdaptDialog  = new AutoAdaptationDialog(main);
-			revisionDialog   = new RevisionDialog(main);
-			retainDialog     = new RetainDialog(main);
-			
-		} catch (Exception e) {
-			throw new ExecutionException(e);
-		}
-	}
+
+		// Create a data base connector
+		_connector = new DataBaseConnector();
+		System.out.println("^^^^^^^^^^^^^^^");
+		System.out.println("after connector");
+		System.out.println("^^^^^^^^^^^^^^^");
+
+		// Init the ddbb connector with the config file
+		_connector.initFromXMLfile(jcolibri.util.FileIO
+		.findFile("config/databaseconfig.xml"));
+		System.out.println("^^^^^^^^^^^^^^^");
+		System.out.println("after fromXML");
+		System.out.println("^^^^^^^^^^^^^^^");
+
+		// Create a Lineal case base for in-memory organization
+		_caseBase = new LinearCaseBase();
+		System.out.println("^^^^^^^^^^^^^^^");
+		System.out.println("after linearCaseBase");
+		System.out.println("^^^^^^^^^^^^^^^");
+
+
+		// Obtain a reference to OntoBridge
+		OntoBridge ob = jcolibri.util.OntoBridgeSingleton.getOntoBridge();
+		System.out.println("^^^^^^^^^^^^^^^");
+		System.out.println("after Ontobridge");
+		System.out.println("^^^^^^^^^^^^^^^");
+
+		// Configure it to work with the Pellet reasoner
+		ob.initWithPelletReasoner();
+		// Setup the main ontology
+		OntologyDocument mainOnto = new OntologyDocument("http://gaia.fdi.ucm.es/ontologies/travel-destinations.owl",
+		FileIO.findFile("src/representation/travel-destinations.owl").toExternalForm());
+		// There are not subontologies
+		ArrayList<OntologyDocument> subOntologies = new ArrayList<OntologyDocument>();
+		    // Load the ontology
+		    ob.loadOntology(mainOnto, subOntologies, false);
+		    
+		    // Create the dialogs
+		    similarityDialog = new SimilarityDialog(main);
+		    resultDialog     = new ResultDialog(main);
+		    autoAdaptDialog  = new AutoAdaptationDialog(main);
+		    revisionDialog   = new RevisionDialog(main);
+		    retainDialog     = new RetainDialog(main);
+		    
+		    } catch (Exception e) {
+		    throw new ExecutionException(e);
+		    }
+		    }
+		    
 	
 	public CBRCaseBase preCycle() throws ExecutionException {
 		// Load cases from connector into the case base
