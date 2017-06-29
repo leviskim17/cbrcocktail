@@ -1,7 +1,7 @@
 <TextFileConfiguration>
-	<FilePath>jcolibri/test/recommenders/housesData/properties.csv</FilePath>
+	<FilePath>config/properties.csv</FilePath>
 	<Delimiters>,</Delimiters>
-	<DescriptionClassName>jcolibri.test.recommenders.housesData.HouseDescription</DescriptionClassName>
+	<DescriptionClassName>representation.HouseDescription</DescriptionClassName>
 	<DescriptionMappings>
 		<Map>area</Map>
 		<Map>beds</Map>
@@ -11,7 +11,7 @@
 		<Map>baths</Map>
 	</DescriptionMappings>
 	
-	<SolutionClassName>jcolibri.test.recommenders.housesData.HouseSolution</SolutionClassName>
+	<SolutionClassName>representation.HouseSolution</SolutionClassName>
 	<SolutionMappings>
 		<Map>address</Map>
 	</SolutionMappings>

@@ -79,15 +79,20 @@ public class Houses1 implements StandardCBRApplication
 	// Create a data base connector
 	_connector = new PlainTextConnector();
 	// Init the ddbb connector with the config file
+//	_connector.initFromXMLfile(jcolibri.util.FileIO
+//			.findFile("jcolibri/test/recommenders/housesData/plaintextconfig.xml"));
 	_connector.initFromXMLfile(jcolibri.util.FileIO
-			.findFile("jcolibri/test/recommenders/housesData/plaintextconfig.xml"));
+			.findFile("config/plaintextconfig.xml"));
 	// Create a Lineal case base for in-memory organization
 	_caseBase = new LinealCaseBase();
 	
 	simConfig = new NNConfig();
 	// Set the average() global similarity function for the description of the case
 	simConfig.setDescriptionSimFunction(new Average());
-	simConfig.addMapping(new Attribute("area", HouseDescription.class), new Table("jcolibri/test/recommenders/housesData/area.csv"));
+//	simConfig.addMapping(new Attribute("area", HouseDescription.class), new Table("jcolibri/test/recommenders/housesData/area.csv"));
+
+	simConfig.addMapping(new Attribute("area", HouseDescription.class), new Table("config/area.csv"));
+
 	simConfig.addMapping(new Attribute("beds", HouseDescription.class), new McSherryMoreIsBetter(0,0));
 	simConfig.addMapping(new Attribute("price", HouseDescription.class), new InrecaLessIsBetter(2000, 0.5));
 	simConfig.addMapping(new Attribute("furnished", HouseDescription.class), new Equal());
