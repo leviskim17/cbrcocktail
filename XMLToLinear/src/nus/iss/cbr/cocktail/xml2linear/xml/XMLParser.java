@@ -195,6 +195,75 @@ public class XMLParser {
 		}
 	}
 	
+	public void generateType3(String xmlFilePath, String txtFilePath) {
+		try {
+			File xmlFile = new File(xmlFilePath);
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document doc = db.parse(xmlFile);
+			doc.getDocumentElement().normalize();
+			
+			BufferedWriter out = new BufferedWriter(new FileWriter(txtFilePath));
+			String buffer = "";
+			
+			buffer += "#CocktailPlainTextCaseBase";
+			out.write(buffer); 
+			out.newLine();
+			
+			buffer += "#caseId;title,ingredient(united),step(united)";
+			out.write(buffer); 
+			out.newLine();
+			out.newLine();
+
+			NodeList recipeLst = doc.getElementsByTagName("recipe");
+			for (int recipeIdx = 0; recipeIdx < recipeLst.getLength(); recipeIdx++) {
+				buffer = "case" + (recipeIdx + 1) + ":";
+				
+				Node recipeNode = recipeLst.item(recipeIdx);
+				if (recipeNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element recipeElmt = (Element) recipeNode;
+					//System.out.println("title : " + getElementValue("title", recipeElmt));
+					buffer += getElementValue("title", recipeElmt) + ":";
+					
+					NodeList ingrediantLst = recipeElmt.getElementsByTagName("ingredients").item(0).getChildNodes();
+					for (int ingrediantIdx = 0; ingrediantIdx < ingrediantLst.getLength(); ingrediantIdx++) {
+						Node ingrediantNode = ingrediantLst.item(ingrediantIdx);
+						if (ingrediantNode.getNodeType() == Node.ELEMENT_NODE) {
+							Element ingrediantElmt = (Element)ingrediantNode;
+							
+							if(ingrediantIdx == ingrediantLst.getLength() - 2) {
+								buffer += getAttributeValue("food", ingrediantElmt);
+							} else {
+								buffer += getAttributeValue("food", ingrediantElmt) + ",";
+							}
+						}
+					}
+					
+					buffer += ":";
+					
+					NodeList stepLst = recipeElmt.getElementsByTagName("preparation").item(0).getChildNodes();
+					for (int stepIdx = 0; stepIdx < stepLst.getLength(); stepIdx++) {
+						Node stepNode = stepLst.item(stepIdx);
+						if (stepNode.getNodeType() == Node.ELEMENT_NODE) {
+							Element stepElmt = (Element)stepNode;
+							
+							buffer += getElementValue(stepElmt) + " ";
+						}
+					}
+					
+					buffer += "/";
+				}
+				
+				out.write(buffer); 
+				out.newLine();
+			}
+			
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private static String getElementValue(Element element) {
 		NodeList nodeList = element.getChildNodes();
 		Node node = (Node)nodeList.item(0);
