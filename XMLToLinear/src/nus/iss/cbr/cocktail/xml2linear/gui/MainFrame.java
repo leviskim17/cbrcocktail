@@ -74,7 +74,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	        	String xmlFile = xmlTxtFld.getText();
 	        	String txtFile = txtTxtFld.getText();
 	        	XMLParser xmlParser = new XMLParser();
-	        	xmlParser.generateType2(xmlFile, txtFile);
+	        	xmlParser.generateType3(xmlFile, txtFile);
 	        }
 		}
     }
