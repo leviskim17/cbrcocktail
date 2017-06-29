@@ -30,7 +30,7 @@ import jcolibri.method.retrieve.NNretrieval.similarity.local.recommenders.Inreca
 import jcolibri.method.retrieve.NNretrieval.similarity.local.recommenders.McSherryMoreIsBetter;
 import jcolibri.method.retrieve.selection.SelectCases;
 import recolibry.conditionals.BuyOrQuit;
-import representation.HouseDescription;
+import representation.CocktailDescription;
 import jcolibri.util.gui.DisplayCasesTableMethod;
 import jcolibri.util.gui.UserChoice;
 
@@ -91,13 +91,13 @@ public class CocktailApplication implements StandardCBRApplication
 	simConfig.setDescriptionSimFunction(new Average());
 //	simConfig.addMapping(new Attribute("area", HouseDescription.class), new Table("jcolibri/test/recommenders/housesData/area.csv"));
 
-	simConfig.addMapping(new Attribute("area", HouseDescription.class), new Table("config/area.csv"));
+	simConfig.addMapping(new Attribute("area", CocktailDescription.class), new Table("config/area.csv"));
 
-	simConfig.addMapping(new Attribute("beds", HouseDescription.class), new McSherryMoreIsBetter(0,0));
-	simConfig.addMapping(new Attribute("price", HouseDescription.class), new InrecaLessIsBetter(2000, 0.5));
-	simConfig.addMapping(new Attribute("furnished", HouseDescription.class), new Equal());
-	simConfig.addMapping(new Attribute("type", HouseDescription.class), new Equal());
-	simConfig.addMapping(new Attribute("baths", HouseDescription.class), new McSherryMoreIsBetter(7,1));
+	simConfig.addMapping(new Attribute("beds", CocktailDescription.class), new McSherryMoreIsBetter(0,0));
+	simConfig.addMapping(new Attribute("price", CocktailDescription.class), new InrecaLessIsBetter(2000, 0.5));
+	simConfig.addMapping(new Attribute("furnished", CocktailDescription.class), new Equal());
+	simConfig.addMapping(new Attribute("type", CocktailDescription.class), new Equal());
+	simConfig.addMapping(new Attribute("baths", CocktailDescription.class), new McSherryMoreIsBetter(7,1));
 
 
     }
@@ -144,7 +144,7 @@ public class CocktailApplication implements StandardCBRApplication
 
     public static void main(String[] args) {
 	
-	StandardCBRApplication recommender = new CocktailR();
+	StandardCBRApplication recommender = new CocktailApplication();
 	try
 	{
 	    recommender.configure();
@@ -153,14 +153,14 @@ public class CocktailApplication implements StandardCBRApplication
 	    
 	    CBRQuery query = new CBRQuery();
 	    
-	    HouseDescription hd = new HouseDescription();
-	    hd.setArea(HouseDescription.Area.Hampstead);
-	    hd.setBaths(1);
-	    hd.setBeds(HouseDescription.Beds.two);
-	    hd.setFurnished(true);
-	    hd.setPrice(500);
-	    hd.setType(HouseDescription.Type.Flat);
-	    query.setDescription(hd);
+	    CocktailDescription cd = new CocktailDescription();
+	    cd.setArea(CocktailDescription.Area.Hampstead);
+	    cd.setBaths(1);
+	    cd.setBeds(CocktailDescription.Beds.two);
+	    cd.setFurnished(true);
+	    cd.setPrice(500);
+	    cd.setType(CocktailDescription.Type.Flat);
+	    query.setDescription(cd);
 	    
 	    recommender.cycle(query);
 	    
@@ -168,7 +168,7 @@ public class CocktailApplication implements StandardCBRApplication
 	    
 	} catch (Exception e)
 	{
-	    org.apache.commons.logging.LogFactory.getLog(Houses1.class).error(e);
+	    org.apache.commons.logging.LogFactory.getLog(CocktailApplication.class).error(e);
 	    
 	}
 
