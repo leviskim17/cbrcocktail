@@ -32,7 +32,6 @@ import jcolibri.method.retrieve.NNretrieval.similarity.local.recommenders.Inreca
 import jcolibri.method.retrieve.NNretrieval.similarity.local.recommenders.McSherryMoreIsBetter;
 import jcolibri.method.retrieve.selection.SelectCases;
 import representation.HouseDescription;
-import jcolibri.util.gui.UserChoice;
 
 /**
  * Simple Single-Shot flats recommender using form-filling, Nearest Neighbour retrieval and top k selection .

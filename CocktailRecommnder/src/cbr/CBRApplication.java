@@ -1,5 +1,6 @@
 package cbr;
 
+import jcolibri.casebase.LinealCaseBase;
 import jcolibri.cbraplications.StandardCBRApplication;
 import jcolibri.cbrcore.CBRCase;
 import jcolibri.cbrcore.CBRCaseBase;
@@ -49,7 +50,7 @@ public class CBRApplication implements StandardCBRApplication {
 	/** Configures the case base */
 	@Generated(value = { "CS-CaseManager" })	
 	private void configureCaseBase() throws InitializingException{
-		casebase = new jcolibri.casebase.LinearCaseBase();
+		casebase = new LinealCaseBase();
 	}
 
 	//******************************************************************/
