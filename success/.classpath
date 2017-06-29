@@ -83,5 +83,7 @@
 	<classpathentry kind="lib" path="/home/apple/Downloads/colibristudio-1.0.0/plugins/es.ucm.gaia.colibristudio.LibraryPool_1.0.0/lib/textual/wordnet/jwnl.jar"/>
 	<classpathentry kind="lib" path="/home/apple/Downloads/colibristudio-1.0.0/plugins/es.ucm.gaia.colibristudio.LibraryPool_1.0.0/lib/textual/wordnet/wordnetbridge.jar"/>
 	<classpathentry kind="lib" path="/home/apple/Downloads/colibristudio-1.0.0/plugins/es.ucm.gaia.colibristudio.LibraryPool_1.0.0/lib/visualization/InfoVisual-CB.jar"/>
+	<classpathentry kind="src" path="/jCOLIBRI2"/>
+	<classpathentry exported="true" kind="lib" path="/jCOLIBRI2/lib/textual/IE/OpenNLP/opennlp.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

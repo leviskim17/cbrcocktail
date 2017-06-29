@@ -1,8 +1,8 @@
 <DataBaseConfiguration>
 	<HibernateConfigFile>config/hibernate.cfg.xml</HibernateConfigFile>
 	<DescriptionMappingFile>config/TravelDescription.hbm.xml</DescriptionMappingFile>
-	<DescriptionClassName>src/cbr/TravelRecommender.TravelDescription</DescriptionClassName>
+	<DescriptionClassName>success.cbr.TravelRecommender.TravelDescription</DescriptionClassName>
 	<SolutionMappingFile>config/TravelSolution.hbm.xml</SolutionMappingFile>
-	<SolutionClassName>src/cbr/TravelRecommender.TravelSolution</SolutionClassName>
+	<SolutionClassName>success.cbr.TravelRecommender.TravelSolution</SolutionClassName>
 	
 </DataBaseConfiguration>
