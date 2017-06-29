@@ -19,71 +19,43 @@ import jcolibri.cbrcore.CaseComponent;
  */
 public class CocktailDescription implements CaseComponent
 {
-    public enum Beds  {StudioFlat,one,two,three,four,five,six,seven};
-    public enum Type  {Flat,House};
-    public enum Area  {Acton,Addlestone,Alperton,Balham,Barnes,Battersea,Bayswater,Belsize_Park,Bermondsey,Bloomsbury,Brentford,Brixton,Brondesbury,Byfleet,Camden,Canary_Wharf,Chelsea,Chiswick,Clapham,Clerkenwell,Cricklewood,Croyden,Earls_Court,Egham,Finchley,Finsbury,Fulham,Golders_Green,Greenwich,Hammersmith,Hampstead,Highgate,Holland_Park,Holloway,Hornsey,Hounslow,Hyde_Park,Islington,Kensington,Kilburn,Kings_Cross,Kingston,Knightsbridge,Lambeth,Little_Venice,Maida_Vale,Marylebone,Mayfair,Mitcham,Notting_Hill,Paddington,Parsons_Green,Pimlico,Primrose_Hill,Putney,Regents_Park,Richmond,Shepherds_Bush,Shoreditch,Soho,South_Kensington,Southwark,St_Johns_Wood,Stepney,Streatham,Swiss_Cottage,The_City,Tooting,Twickenham,Walton_on_Thames,Wandsworth,Wapping,West_Ham,West_Horsley,West_Kensington,Westminster,Weybridge,Whitechapel,Willesden,Wimbledon};
-	
+    public enum Food_2  {one2,two2,three2,four2,five2,six2,seven2};
+    public enum Food_3  {one3,two3,three3,four3,five3,six3,seven3};
+    public enum Food_1  {one1,two1,three1,four1,five1,six1,seven1};
     Integer id;
-    Area area;
-    Beds beds;
-    Integer price;
-    Boolean furnished;
-    Type type;
-    Integer baths;
+    Food_1 food_choose_1;
+    Food_2 food_choose_2;
+    Food_3 food_choose_3;
     
     public String toString() 
     {
-		return "("+id+";"+area+";"+beds+";"+price+";"+furnished+";"+type+";"+baths+")";
+    	return "("+id+";"+food_choose_1+";"+food_choose_2+";"+food_choose_3+")";
     }
 
 
-    public Area getArea()
+    public Food_1 getFood_1()
     {
-        return area;
+        return food_choose_1;
     }
 
 
-    public void setArea(Area area)
+    public void setFood_1(Food_1 food_1)
     {
-        this.area = area;
+        this.food_choose_1 = food_1;
     }
 
 
-    public Integer getBaths()
+
+    public Food_2 getFood_2()
     {
-        return baths;
+        return food_choose_2;
     }
 
 
-    public void setBaths(Integer baths)
+    public void setFood_2(Food_2 food_2)
     {
-        this.baths = baths;
+        this.food_choose_2 = food_2;
     }
-
-
-    public Beds getBeds()
-    {
-        return beds;
-    }
-
-
-    public void setBeds(Beds beds)
-    {
-        this.beds = beds;
-    }
-
-
-    public Boolean getFurnished()
-    {
-        return furnished;
-    }
-
-
-    public void setFurnished(Boolean furnished)
-    {
-        this.furnished = furnished;
-    }
-
 
     public Integer getId()
     {
@@ -97,33 +69,19 @@ public class CocktailDescription implements CaseComponent
     }
 
 
-    public Integer getPrice()
+    public Food_3 getFood_3()
     {
-        return price;
+        return food_choose_3;
     }
 
 
-    public void setPrice(Integer price)
+    public void setFood_3(Food_3 food_3)
     {
-        this.price = price;
-    }
-
-    
-    public Type getType()
-    {
-        return type;
+        this.food_choose_3 = food_3;
     }
 
 
-    public void setType(Type type)
-    {
-        this.type = type;
-    }
 
-
-    /* (non-Javadoc)
-     * @see jcolibri.cbrcore.CaseComponent#getIdAttribute()
-     */
     public Attribute getIdAttribute()
     {
 	return new Attribute("id",this.getClass());

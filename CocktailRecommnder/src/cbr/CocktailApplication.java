@@ -91,13 +91,13 @@ public class CocktailApplication implements StandardCBRApplication
 	simConfig.setDescriptionSimFunction(new Average());
 //	simConfig.addMapping(new Attribute("area", HouseDescription.class), new Table("jcolibri/test/recommenders/housesData/area.csv"));
 
-	simConfig.addMapping(new Attribute("area", CocktailDescription.class), new Table("config/area.csv"));
+	simConfig.addMapping(new Attribute("food_choose_1", CocktailDescription.class), new Table("config/area.csv"));
 
-	simConfig.addMapping(new Attribute("beds", CocktailDescription.class), new McSherryMoreIsBetter(0,0));
-	simConfig.addMapping(new Attribute("price", CocktailDescription.class), new InrecaLessIsBetter(2000, 0.5));
-	simConfig.addMapping(new Attribute("furnished", CocktailDescription.class), new Equal());
-	simConfig.addMapping(new Attribute("type", CocktailDescription.class), new Equal());
-	simConfig.addMapping(new Attribute("baths", CocktailDescription.class), new McSherryMoreIsBetter(7,1));
+	simConfig.addMapping(new Attribute("food_choose_2", CocktailDescription.class), new McSherryMoreIsBetter(0,0));
+//	simConfig.addMapping(new Attribute("price", CocktailDescription.class), new InrecaLessIsBetter(2000, 0.5));
+//	simConfig.addMapping(new Attribute("furnished", CocktailDescription.class), new Equal());
+	simConfig.addMapping(new Attribute("food_choose_3", CocktailDescription.class), new Equal());
+//	simConfig.addMapping(new Attribute("baths", CocktailDescription.class), new McSherryMoreIsBetter(7,1));
 
 
     }
@@ -154,12 +154,12 @@ public class CocktailApplication implements StandardCBRApplication
 	    CBRQuery query = new CBRQuery();
 	    
 	    CocktailDescription cd = new CocktailDescription();
-	    cd.setArea(CocktailDescription.Area.Hampstead);
-	    cd.setBaths(1);
-	    cd.setBeds(CocktailDescription.Beds.two);
-	    cd.setFurnished(true);
-	    cd.setPrice(500);
-	    cd.setType(CocktailDescription.Type.Flat);
+	    cd.setFood_1(CocktailDescription.Food_1.one1);
+	//    cd.setBaths(1);
+	    cd.setFood_2(CocktailDescription.Food_2.two2);
+	 //   cd.setFurnished(true);
+	 //   cd.setPrice(500);
+	    cd.setFood_3(CocktailDescription.Food_3.three3);
 	    query.setDescription(cd);
 	    
 	    recommender.cycle(query);
