@@ -19,8 +19,6 @@ import jcolibri.cbrcore.CBRQuery;
 import jcolibri.cbrcore.Connector;
 import jcolibri.connector.PlainTextConnector;
 import jcolibri.exception.ExecutionException;
-import jcolibri.extensions.recommendation.casesDisplay.DisplayCasesTableMethod;
-import jcolibri.extensions.recommendation.conditionals.BuyOrQuit;
 import jcolibri.method.gui.formFilling.ObtainQueryWithFormMethod;
 import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
@@ -31,7 +29,9 @@ import jcolibri.method.retrieve.NNretrieval.similarity.local.Table;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.recommenders.InrecaLessIsBetter;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.recommenders.McSherryMoreIsBetter;
 import jcolibri.method.retrieve.selection.SelectCases;
+import recolibry.conditionals.BuyOrQuit;
 import representation.HouseDescription;
+import jcolibri.util.gui.DisplayCasesTableMethod;
 import jcolibri.util.gui.UserChoice;
 
 /**
@@ -114,7 +114,7 @@ public class Houses1 implements StandardCBRApplication
 	Collection<CBRCase> retrievedCases = SelectCases.selectTopK(eval, 5);
 	
 	// Display cases
-	jcolibri.extensions.recommendation.casesDisplay.UserChoice choice = DisplayCasesTableMethod.displayCasesInTableBasic(retrievedCases);//DisplayCasesMethod.displayCases(retrievedCases);
+	UserChoice choice = DisplayCasesTableMethod.displayCasesInTableBasic(retrievedCases);//DisplayCasesMethod.displayCases(retrievedCases);
 
 	// Buy or Quit
 	if(BuyOrQuit.buyOrQuit(choice))
