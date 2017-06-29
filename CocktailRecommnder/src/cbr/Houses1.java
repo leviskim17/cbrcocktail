@@ -19,6 +19,9 @@ import jcolibri.cbrcore.CBRQuery;
 import jcolibri.cbrcore.Connector;
 import jcolibri.connector.PlainTextConnector;
 import jcolibri.exception.ExecutionException;
+import jcolibri.extensions.recommendation.casesDisplay.DisplayCasesTableMethod;
+import jcolibri.extensions.recommendation.casesDisplay.UserChoice;
+import jcolibri.extensions.recommendation.conditionals.BuyOrQuit;
 import jcolibri.method.gui.formFilling.ObtainQueryWithFormMethod;
 import jcolibri.method.retrieve.RetrievalResult;
 import jcolibri.method.retrieve.NNretrieval.NNConfig;
@@ -29,10 +32,7 @@ import jcolibri.method.retrieve.NNretrieval.similarity.local.Table;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.recommenders.InrecaLessIsBetter;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.recommenders.McSherryMoreIsBetter;
 import jcolibri.method.retrieve.selection.SelectCases;
-import recolibry.conditionals.BuyOrQuit;
 import representation.HouseDescription;
-import jcolibri.util.gui.DisplayCasesTableMethod;
-import jcolibri.util.gui.UserChoice;
 
 /**
  * Simple Single-Shot flats recommender using form-filling, Nearest Neighbour retrieval and top k selection .
@@ -168,8 +168,8 @@ public class Houses1 implements StandardCBRApplication
 	    
 	} catch (Exception e)
 	{
-	    org.apache.commons.logging.LogFactory.getLog(Houses1.class).error(e);
-	    
+	    //org.apache.commons.logging.LogFactory.getLog(Houses1.class).error(e);
+	    System.out.print(e);
 	}
 
     }
