@@ -62,7 +62,7 @@ public class CocktailApplication implements StandardCBRApplication
     {
 	try
 	{
-	    _connector = new RestaurantsConnector("jcolibri/test/test13/restaurants-large-v2.txt");
+	    _connector = new RestaurantsConnector("config/restaurants-large-v2.txt");
 	    _caseBase = new LinealCaseBase();
 	    
 	    jcolibri.util.ProgressController.clear();
