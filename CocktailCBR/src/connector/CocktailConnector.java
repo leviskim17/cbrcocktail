@@ -20,7 +20,9 @@ import jcolibri.cbrcore.CaseBaseFilter;
 import jcolibri.cbrcore.Connector;
 import jcolibri.exception.InitializingException;
 import jcolibri.extensions.textual.IE.opennlp.IETextOpenNLP;
-import jcolibri.test.test13.RestaurantDescription;
+//import jcolibri.test.test13.RestaurantDescription;
+
+import representation.CocktailDescription;
 
 /**
  * Obtains cases from a simple txt file. This connector is thought to work with txt files that contain
@@ -91,9 +93,9 @@ public class CocktailConnector implements Connector
 	    String line = "";
 	    while ((line = br.readLine()) != null)
 	    {
-		RestaurantDescription restaurant = new RestaurantDescription();
+	    	CocktailDescription restaurant = new CocktailDescription();
 		restaurant.setName(line);
-		restaurant.setAddress(br.readLine());
+		restaurant.setIngredient(br.readLine());
 		restaurant.setLocation(br.readLine());
 		restaurant.setPhone(br.readLine());
 		restaurant.setDescription(new IETextOpenNLP(br.readLine()));
