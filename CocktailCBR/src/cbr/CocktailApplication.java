@@ -29,7 +29,9 @@ import jcolibri.method.retrieve.selection.SelectCases;
 import jcolibri.test.main.SwingProgressBar;
 import jcolibri.test.test13.RestaurantDescription;
 import jcolibri.test.test13.connector.RestaurantsConnector;
-import jcolibri.test.test13.gui.ResultFrame;
+//import jcolibri.test.test13.gui.ResultFrame;
+import gui.ResultRetrive;
+
 
 /**
  * This test shows how to use the Apache Lucene search engine in a Restaurant recommender. 
@@ -118,7 +120,7 @@ public class CocktailApplication implements StandardCBRApplication
 	RestaurantDescription qrd = (RestaurantDescription)query.getDescription();
 	CBRCase mostSimilar = res.iterator().next().get_case();
 	RestaurantDescription rrd = (RestaurantDescription)mostSimilar.getDescription();
-	new ResultFrame(qrd.getDescription().getRAWContent(), rrd.getName(), rrd.getAddress(), rrd.getDescription().getRAWContent());
+	new ResultRetrive(qrd.getDescription().getRAWContent(), rrd.getName(), rrd.getAddress(), rrd.getDescription().getRAWContent());
 
     }
 

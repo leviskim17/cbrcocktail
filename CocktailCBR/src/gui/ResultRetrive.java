@@ -31,7 +31,7 @@ import javax.swing.border.TitledBorder;
  * @version 1.0
  */
 
-public class ResultFrame extends JDialog {
+public class ResultRetrive extends JDialog {
 
     private static final long serialVersionUID = 1L;
 
@@ -77,7 +77,7 @@ public class ResultFrame extends JDialog {
 //	JEditorPane descriptionTextPane = new JEditorPane();
 	JEditorPane stepTextPane = new JEditorPane();
 
-	public ResultFrame(String query, String cocktailTitle, String ingredient,
+	public ResultRetrive(String query, String cocktailTitle, String ingredient,
 			String step) throws HeadlessException {
 		try {
 			jbInit();
@@ -97,7 +97,7 @@ public class ResultFrame extends JDialog {
 	}
 
 	public static void main(String[] args) throws HeadlessException {
-		ResultFrame resultFrame1 = new ResultFrame("query", "cocktailTitle",
+		ResultRetrive resultFrame1 = new ResultRetrive("query", "cocktailTitle",
 				"ingredient", "step");
 		resultFrame1.setVisible(true);
 	}
@@ -112,7 +112,7 @@ public class ResultFrame extends JDialog {
 		titledBorder2 = new TitledBorder(border2, "Query");
 		jLabel1.setFont(new java.awt.Font("Dialog", 1, 16));
 		jLabel1.setForeground(Color.blue);
-		jLabel1.setText("jCOLIBRI Chef Recommendation");
+		jLabel1.setText("Cocktail Recommendation");
 		jLabel1.setBounds(new Rectangle(100, 11, 271, 29));
 		this.getContentPane().setBackground(Color.white);
 		this.getContentPane().setLayout(null);
@@ -138,12 +138,12 @@ public class ResultFrame extends JDialog {
 		cocktailTitleTextPane.setEditable(false);
 		cocktailTitleTextPane.setBackground(Color.white);
 		jLabel3.setBounds(new Rectangle(9, 74, 214, 20));
-		jLabel3.setText("Address");
+		jLabel3.setText("Ingredient");
 		jScrollPane2
 				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		jScrollPane2.setBounds(new Rectangle(7, 98, 234, 40));
 		jLabel4.setBounds(new Rectangle(9, 149, 214, 20));
-		jLabel4.setText("Description");
+		jLabel4.setText("Step");
 		jScrollPane3
 				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		jScrollPane3
