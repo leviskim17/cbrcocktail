@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Case>
+    <CompoundAttribute isId="false">
+        <attribType/>
+        <name>Solution</name>
+    </CompoundAttribute>
+    <CompoundAttribute isId="false">
+        <attribType/>
+        <name>Result</name>
+    </CompoundAttribute>
+    <CompoundAttribute isId="false">
+        <attribType/>
+        <name>Justification</name>
+    </CompoundAttribute>
+    <CompoundAttribute isId="false">
+        <attribType>CaseDescription</attribType>
+        <name>Description</name>
+        <SimpleAttribute isId="false">
+            <attribType>java.lang.String</attribType>
+            <name>Step</name>
+        </SimpleAttribute>
+        <SimpleAttribute isId="false">
+            <attribType>java.lang.String</attribType>
+            <name>Ingredient</name>
+        </SimpleAttribute>
+        <SimpleAttribute isId="false">
+            <attribType>java.lang.String</attribType>
+            <name>Recipe</name>
+        </SimpleAttribute>
+        <SimpleAttribute isId="true">
+            <attribType>java.lang.Integer</attribType>
+            <name>CaseId</name>
+        </SimpleAttribute>
+    </CompoundAttribute>
+</Case>
