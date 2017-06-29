@@ -205,25 +205,25 @@ public class XMLParser {
 			
 			BufferedWriter out = new BufferedWriter(new FileWriter(txtFilePath));
 			String buffer = "";
-			
-			buffer += "#CocktailPlainTextCaseBase";
-			out.write(buffer); 
-			out.newLine();
-			
-			buffer += "#caseId;title,ingredient(united),step(united)";
-			out.write(buffer); 
-			out.newLine();
-			out.newLine();
 
 			NodeList recipeLst = doc.getElementsByTagName("recipe");
 			for (int recipeIdx = 0; recipeIdx < recipeLst.getLength(); recipeIdx++) {
-				buffer = "case" + (recipeIdx + 1) + ":";
 				
 				Node recipeNode = recipeLst.item(recipeIdx);
 				if (recipeNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element recipeElmt = (Element) recipeNode;
 					//System.out.println("title : " + getElementValue("title", recipeElmt));
-					buffer += getElementValue("title", recipeElmt) + ":";
+					buffer = getElementValue("title", recipeElmt);
+					out.write(buffer); 
+					out.newLine();
+					
+					buffer = "1781 Westwood Blvd.";
+					out.write(buffer); 
+					out.newLine();
+					
+					buffer = "Los Angeles";
+					out.write(buffer); 
+					out.newLine();
 					
 					NodeList ingrediantLst = recipeElmt.getElementsByTagName("ingredients").item(0).getChildNodes();
 					for (int ingrediantIdx = 0; ingrediantIdx < ingrediantLst.getLength(); ingrediantIdx++) {
@@ -231,15 +231,16 @@ public class XMLParser {
 						if (ingrediantNode.getNodeType() == Node.ELEMENT_NODE) {
 							Element ingrediantElmt = (Element)ingrediantNode;
 							
-							if(ingrediantIdx == ingrediantLst.getLength() - 2) {
-								buffer += getAttributeValue("food", ingrediantElmt);
+							if(ingrediantIdx == 1) {
+								buffer = getElementValue(ingrediantElmt) + " ";
 							} else {
-								buffer += getAttributeValue("food", ingrediantElmt) + ",";
+								buffer += getElementValue(ingrediantElmt) + " ";
 							}
 						}
 					}
 					
-					buffer += ":";
+					out.write(buffer); 
+					out.newLine();
 					
 					NodeList stepLst = recipeElmt.getElementsByTagName("preparation").item(0).getChildNodes();
 					for (int stepIdx = 0; stepIdx < stepLst.getLength(); stepIdx++) {
@@ -247,14 +248,18 @@ public class XMLParser {
 						if (stepNode.getNodeType() == Node.ELEMENT_NODE) {
 							Element stepElmt = (Element)stepNode;
 							
-							buffer += getElementValue(stepElmt) + " ";
+							if(stepIdx == 1) {
+								buffer = getElementValue(stepElmt) + " ";
+							} else {
+								buffer += getElementValue(stepElmt) + " ";
+							}
 						}
 					}
-					
-					buffer += "/";
 				}
 				
 				out.write(buffer); 
+				out.newLine();
+				out.newLine();
 				out.newLine();
 			}
 			
