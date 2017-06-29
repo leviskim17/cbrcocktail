@@ -1,0 +1,18 @@
+<TextFileConfiguration>
+	<FilePath>config/properties.csv</FilePath>
+	<Delimiters>,</Delimiters>
+	<DescriptionClassName>representation.HouseDescription</DescriptionClassName>
+	<DescriptionMappings>
+		<Map>area</Map>
+		<Map>beds</Map>
+		<Map>price</Map>
+		<Map>furnished</Map>	
+		<Map>type</Map>	
+		<Map>baths</Map>
+	</DescriptionMappings>
+	
+	<SolutionClassName>representation.HouseSolution</SolutionClassName>
+	<SolutionMappings>
+		<Map>address</Map>
+	</SolutionMappings>
+</TextFileConfiguration>
