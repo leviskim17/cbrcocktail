@@ -27,21 +27,18 @@ public class CocktailConnector implements Connector
    
     public void close()
     {
-	// TODO Auto-generated method stub
 
     }
 
    
     public void deleteCases(Collection<CBRCase> cases)
     {
-	// TODO Auto-generated method stub
 
     }
 
     
     public void initFromXMLfile(URL file) throws InitializingException
     {
-	// TODO Auto-generated method stub
 
     }
 
@@ -83,13 +80,11 @@ public class CocktailConnector implements Connector
   
     public Collection<CBRCase> retrieveSomeCases(CaseBaseFilter filter)
     {
-	// TODO Auto-generated method stub
 	return null;
     }
 
     public void storeCases(Collection<CBRCase> cases)
     {
-	// TODO Auto-generated method stub
 
     }
 
