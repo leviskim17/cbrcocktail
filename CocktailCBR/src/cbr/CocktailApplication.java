@@ -27,8 +27,11 @@ import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity;
 import jcolibri.method.retrieve.selection.SelectCases;
 import jcolibri.test.main.SwingProgressBar;
-import jcolibri.test.test13.RestaurantDescription;
-import jcolibri.test.test13.connector.RestaurantsConnector;
+//import jcolibri.test.test13.RestaurantDescription;
+import representation.CocktailDescription;
+
+//import jcolibri.test.test13.connector.RestaurantsConnector;
+import connector.CocktailConnector;
 //import jcolibri.test.test13.gui.ResultFrame;
 import gui.ResultRetrive;
 
@@ -64,7 +67,7 @@ public class CocktailApplication implements StandardCBRApplication
     {
 	try
 	{
-	    _connector = new RestaurantsConnector("config/ccc_cocktails.txt");
+	    _connector = new CocktailConnector("config/ccc_cocktails.txt");
 	    _caseBase = new LinealCaseBase();
 	    
 	    jcolibri.util.ProgressController.clear();
@@ -105,7 +108,7 @@ public class CocktailApplication implements StandardCBRApplication
 	
 	
 	//We only compare the "description" attribute using Lucene
-	Attribute textualAttribute = new Attribute("description", RestaurantDescription.class);
+	Attribute textualAttribute = new Attribute("description", CocktailDescription.class);
 	nnConfig.addMapping(textualAttribute, new LuceneTextSimilarity(luceneIndex,query,textualAttribute, true));
 
 	
@@ -117,10 +120,10 @@ public class CocktailApplication implements StandardCBRApplication
 	for(RetrievalResult rr: res)
 	    System.out.println(rr);
 	
-	RestaurantDescription qrd = (RestaurantDescription)query.getDescription();
+			CocktailDescription qrd = (CocktailDescription)query.getDescription();
 	CBRCase mostSimilar = res.iterator().next().get_case();
-	RestaurantDescription rrd = (RestaurantDescription)mostSimilar.getDescription();
-	new ResultRetrive(qrd.getDescription().getRAWContent(), rrd.getName(), rrd.getAddress(), rrd.getDescription().getRAWContent());
+	CocktailDescription rrd = (CocktailDescription)mostSimilar.getDescription();
+	new ResultRetrive(qrd.getDescription().getRAWContent(), rrd.getName(), rrd.getIngredient(), rrd.getDescription().getRAWContent());
 
     }
 
@@ -159,7 +162,7 @@ public class CocktailApplication implements StandardCBRApplication
         	    else
         	    {	
                 	    CBRQuery query = new CBRQuery();
-                	    RestaurantDescription queryDescription = new RestaurantDescription();
+                	    CocktailDescription queryDescription = new CocktailDescription();
                 	    queryDescription.setDescription(new IETextOpenNLP(queryString));
                 	    query.setDescription(queryDescription);
                 	    
