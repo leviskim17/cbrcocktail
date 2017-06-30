@@ -26,8 +26,7 @@ public class CocktailDescription implements CaseComponent
     String name;
    // String address;
     String ingredient;
-    String location;
-    String phone;
+
     IETextOpenNLP description;
     
     // Extracted values from the description
@@ -195,21 +194,7 @@ public class CocktailDescription implements CaseComponent
         this.foodType = foodType;
     }
 
-    /**
-     * @return Returns the location.
-     */
-    public String getLocation()
-    {
-        return location;
-    }
 
-    /**
-     * @param location The location to set.
-     */
-    public void setLocation(String location)
-    {
-        this.location = location;
-    }
 
     /**
      * @return Returns the lunchDays.
@@ -262,18 +247,7 @@ public class CocktailDescription implements CaseComponent
     /**
      * @return Returns the phone.
      */
-    public String getPhone()
-    {
-        return phone;
-    }
 
-    /**
-     * @param phone The phone to set.
-     */
-    public void setPhone(String phone)
-    {
-        this.phone = phone;
-    }
 
     /**
      * @return Returns the price.
@@ -314,9 +288,9 @@ public class CocktailDescription implements CaseComponent
 	sb.append(", ");
 	sb.append(this.ingredient);
 	sb.append(", ");
-	sb.append(this.location);
+	
 	sb.append(", ");
-	sb.append(this.phone);
+
 	sb.append(",");
 	sb.append(this.description);
 	

@@ -93,17 +93,17 @@ public class CocktailConnector implements Connector
 	    String line = "";
 	    while ((line = br.readLine()) != null)
 	    {
-	    	CocktailDescription restaurant = new CocktailDescription();
-		restaurant.setName(line);
-		restaurant.setIngredient(br.readLine());
-		restaurant.setLocation(br.readLine());
-		restaurant.setPhone(br.readLine());
-		restaurant.setDescription(new IETextOpenNLP(br.readLine()));
+	    	CocktailDescription cocktail  = new CocktailDescription();
+	    	cocktail.setName(line);
+	    	cocktail.setIngredient(br.readLine());
+	    
+	    
+	    	cocktail.setDescription(new IETextOpenNLP(br.readLine()));
 		br.readLine();
 		br.readLine();
 		br.readLine();
 		CBRCase _case = new CBRCase();
-		_case.setDescription(restaurant);
+		_case.setDescription(cocktail);
 		res.add(_case);
 		
 	    }

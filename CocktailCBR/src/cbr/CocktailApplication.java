@@ -64,7 +64,7 @@ public class CocktailApplication implements StandardCBRApplication
     {
 	try
 	{
-	    _connector = new RestaurantsConnector("config/restaurants-large-v2.txt");
+	    _connector = new RestaurantsConnector("config/ccc_cocktails.txt");
 	    _caseBase = new LinealCaseBase();
 	    
 	    jcolibri.util.ProgressController.clear();
@@ -153,7 +153,7 @@ public class CocktailApplication implements StandardCBRApplication
 	    boolean _continue = true;
 	    while(_continue)
 	    {
-        	    String queryString = javax.swing.JOptionPane.showInputDialog("Please enter the restaurant description:");
+        	    String queryString = javax.swing.JOptionPane.showInputDialog("Please enter the cocktail description:");
         	    if(queryString == null)
         		_continue = false;
         	    else
