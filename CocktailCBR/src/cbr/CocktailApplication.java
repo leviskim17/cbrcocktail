@@ -1,11 +1,4 @@
-/**
- * Test13b.java
- * jCOLIBRI2 framework. 
- * @author Juan A. Recio-Garc�a.
- * GAIA - Group for Artificial Intelligence Applications
- * http://gaia.fdi.ucm.es
- * 23/06/2007
- */
+
 package cbr;
 
 import java.util.Collection;
@@ -27,29 +20,13 @@ import jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
 import jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity;
 import jcolibri.method.retrieve.selection.SelectCases;
 import jcolibri.test.main.SwingProgressBar;
-//import jcolibri.test.test13.RestaurantDescription;
 import representation.CocktailDescription;
 
-//import jcolibri.test.test13.connector.RestaurantsConnector;
 import connector.CocktailConnector;
-//import jcolibri.test.test13.gui.ResultFrame;
 import gui.ResultRetrive;
 
 
-/**
- * This test shows how to use the Apache Lucene search engine in a Restaurant recommender. 
- * <br>
- * It uses a custum connector (RestaurantConnector) that loads cases from a normal txt file.
- * <br>
- * To compare the texts it uses the Lucene similarity function implemented in jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity
- * <br>
- * Test13a shows whot tu use other textual similarity function from the jcolibri.method.retrieve.NNretrieval.similarity.local.textual package.
- * 
- * @author Juan A. Recio-Garcia
- * @version 1.0
- * @see jcolibri.method.retrieve.NNretrieval.similarity.local.textual.LuceneTextSimilarity
- * @see jcolibri.test.test13.connector.RestaurantsConnector
- */
+
 public class CocktailApplication implements StandardCBRApplication
 {
 
@@ -58,11 +35,7 @@ public class CocktailApplication implements StandardCBRApplication
 
     LuceneIndex luceneIndex;
     
-    /*
-     * (non-Javadoc)
-     * 
-     * @see jcolibri.cbraplications.BasicCBRApplication#configure()
-     */
+ 
     public void configure() throws ExecutionException
     {
 	try
@@ -79,26 +52,17 @@ public class CocktailApplication implements StandardCBRApplication
 	}
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see jcolibri.cbraplications.StandardCBRApplication#preCycle()
-     */
+ 
     public CBRCaseBase preCycle() throws ExecutionException
     {
 	_caseBase.init(_connector);
 
-	//Here we create the Lucene index
+	
 	luceneIndex = jcolibri.method.precycle.LuceneIndexCreator.createLuceneIndex(_caseBase);
 	
 	return _caseBase;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see jcolibri.cbraplications.StandardCBRApplication#cycle(jcolibri.cbrcore.CBRQuery)
-     */
     public void cycle(CBRQuery query) throws ExecutionException
     {
 	Collection<CBRCase> cases = _caseBase.getCases();
@@ -107,7 +71,6 @@ public class CocktailApplication implements StandardCBRApplication
 	nnConfig.setDescriptionSimFunction(new Average());
 	
 	
-	//We only compare the "description" attribute using Lucene
 	Attribute textualAttribute = new Attribute("description", CocktailDescription.class);
 	nnConfig.addMapping(textualAttribute, new LuceneTextSimilarity(luceneIndex,query,textualAttribute, true));
 
@@ -127,11 +90,7 @@ public class CocktailApplication implements StandardCBRApplication
 
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see jcolibri.cbraplications.StandardCBRApplication#postCycle()
-     */
+
     public void postCycle() throws ExecutionException
     {
 	_connector.close();

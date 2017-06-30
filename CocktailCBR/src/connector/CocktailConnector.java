@@ -1,11 +1,3 @@
-/**
- * RestaurantsConnector.java
- * jCOLIBRI2 framework. 
- * @author Juan A. Recio-Garc�a.
- * GAIA - Group for Artificial Intelligence Applications
- * http://gaia.fdi.ucm.es
- * 23/06/2007
- */
 package connector;
 
 import java.io.BufferedReader;
@@ -20,31 +12,10 @@ import jcolibri.cbrcore.CaseBaseFilter;
 import jcolibri.cbrcore.Connector;
 import jcolibri.exception.InitializingException;
 import jcolibri.extensions.textual.IE.opennlp.IETextOpenNLP;
-//import jcolibri.test.test13.RestaurantDescription;
 
 import representation.CocktailDescription;
 
-/**
- * Obtains cases from a simple txt file. This connector is thought to work with txt files that contain
- * descriptions of restaurants following the format:
- * <pre>
- * NAME
- * ADDRESS
- * LOCATION
- * PHONE
- * DESCRIPTION
- * AUTHOR_OF_DESCRIPTION
- * 
- * 
- * NAME
- * ADDRESS
- * ...
- * </pre>
- * This connector only reads cases but does not write anything to the text file.
- * @author Juan A. Recio-Garcia
- * @version 1.0
- *
- */
+
 public class CocktailConnector implements Connector
 {
     private URL file;
@@ -53,36 +24,28 @@ public class CocktailConnector implements Connector
 	file = jcolibri.util.FileIO.findFile(sourceFile);
     }
 
-    /* (non-Javadoc)
-     * @see jcolibri.cbrcore.Connector#close()
-     */
+   
     public void close()
     {
 	// TODO Auto-generated method stub
 
     }
 
-    /* (non-Javadoc)
-     * @see jcolibri.cbrcore.Connector#deleteCases(java.util.Collection)
-     */
+   
     public void deleteCases(Collection<CBRCase> cases)
     {
 	// TODO Auto-generated method stub
 
     }
 
-    /* (non-Javadoc)
-     * @see jcolibri.cbrcore.Connector#initFromXMLfile(java.net.URL)
-     */
+    
     public void initFromXMLfile(URL file) throws InitializingException
     {
 	// TODO Auto-generated method stub
 
     }
 
-    /* (non-Javadoc)
-     * @see jcolibri.cbrcore.Connector#retrieveAllCases()
-     */
+    
     public Collection<CBRCase> retrieveAllCases()
     {
 	Collection<CBRCase> res = new ArrayList<CBRCase>();
@@ -117,18 +80,13 @@ public class CocktailConnector implements Connector
 	return res;
     }
 
-    /* (non-Javadoc)
-     * @see jcolibri.cbrcore.Connector#retrieveSomeCases(jcolibri.cbrcore.CaseBaseFilter)
-     */
+  
     public Collection<CBRCase> retrieveSomeCases(CaseBaseFilter filter)
     {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    /* (non-Javadoc)
-     * @see jcolibri.cbrcore.Connector#storeCases(java.util.Collection)
-     */
     public void storeCases(Collection<CBRCase> cases)
     {
 	// TODO Auto-generated method stub

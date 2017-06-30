@@ -1,11 +1,3 @@
-/**
- * RestaurantsConnector.java
- * jCOLIBRI2 framework. 
- * @author Juan A. Recio-Garc�a.
- * GAIA - Group for Artificial Intelligence Applications
- * http://gaia.fdi.ucm.es
- * 23/06/2007
- */
 package gui;
 
 import java.awt.Color;
@@ -25,11 +17,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-/**
- * Swing dialog to show the result of the recommendation.
- * @author Juan Antonio Recio Garc�a
- * @version 1.0
- */
+
 
 public class ResultRetrive extends JDialog {
 
@@ -57,7 +45,6 @@ public class ResultRetrive extends JDialog {
 
 	JLabel jLabel2 = new JLabel();
 
-//	JTextField restaurant = new JTextField();
 	
 	JTextField cocktailTitleTextPane = new JTextField();
 
@@ -66,7 +53,6 @@ public class ResultRetrive extends JDialog {
 
 	JScrollPane jScrollPane2 = new JScrollPane();
 
-//	JEditorPane AddressTextPane = new JEditorPane();
 	
 	JEditorPane ingredientTextPane = new JEditorPane();
 
@@ -74,7 +60,6 @@ public class ResultRetrive extends JDialog {
 
 	JScrollPane jScrollPane3 = new JScrollPane();
 
-//	JEditorPane descriptionTextPane = new JEditorPane();
 	JEditorPane stepTextPane = new JEditorPane();
 
 	public ResultRetrive(String query, String cocktailTitle, String ingredient,
