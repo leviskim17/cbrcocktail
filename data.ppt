@@ -1,0 +1,13 @@
+Because jColibri framework is built with java 1.6, you need to install old version for running CocktailCBR.
+java 1.6 framework : 
+http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase6-419409.html
+
+XMLToLinear is built on the newest version of java, for running you need to install the newer version than 1.8.
+java 1.8 framework :
+http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+How to run CocktailCBR:
+1. click CocktailCBR.bat
+
+How to run XMLToLinear:
+1. click XMLToLinear.bat
